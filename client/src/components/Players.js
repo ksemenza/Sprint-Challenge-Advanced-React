@@ -1,5 +1,8 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import '../App.css'
+import "@testing-library/jest-dom/extend-expect";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Label } from 'rechart';
 
 class Players extends Component {
     constructor(){
@@ -28,7 +31,7 @@ class Players extends Component {
                     {this.state.players.map(player => 
                         <h2 key={player.id}>{player.name} from {player.country}</h2>
                         )}
-                    
+                  
                 </div>
             )
         }

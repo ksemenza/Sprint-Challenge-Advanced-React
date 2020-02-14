@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, getByTestId } from '@testing-library/react';
+import "@testing-library/jest-dom/extend-expect";
 import 'mutationobserver-shim'
 import App from './App';
 import Player from './components/Players'
@@ -15,7 +16,7 @@ import Player from './components/Players'
 test("Render Text", () => {
   const { getByText } = render(<App />);
   const h1El = getByText(/Women's World Cup Soccer/i)
-  // expect(h1El).toBeInTheDocument()
+  expect(h1El).toBeInTheDocument()
   expect(h1El).toBeTruthy();
   expect(h1El).not.toBeFalsy();
 })
@@ -25,7 +26,8 @@ test("Render Text", () => {
 test('Render Button', () => {
   const {getByTestId} = render(<App/>)
   const btn = getByTestId('dark-btn')
-  // expect(btn).toHaveAttribute('onClick', 'toggleDarkMode' )
+  expect(btn).toBeInTheDocument('onClick', 'toggleDarkMode' )
+  expect(btn).toBeVisible()
 })
 
 
@@ -33,8 +35,8 @@ test('Render Button', () => {
 test('Render Img', () => {
   const { getByAltText } = render(<App />);
   const trophyImg = getByAltText(/trophy/i);
-  // expect(trophy).toBeInTheDocument();
-  // expect(trophy).toBeVisible();
+  expect(trophyImg).toBeInTheDocument();
+  expect(trophyImg).toBeVisible();
 })
 
 
@@ -42,6 +44,6 @@ test('Render Img', () => {
 test('Render Links', () => {
   const { getByText } = render(<App />);
   const link = getByText(/learn react/i);
-  // expect(link).toBeInTheDocument();
-  // expect(link).toBeVisible();
+  expect(link).toBeInTheDocument();
+  expect(link).toBeVisible();
 })
