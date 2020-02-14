@@ -8,13 +8,32 @@ class Players extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:500/api/players')
+        axios.get('http://localhost:5000/api/players')
         .then(res => {
-            console.log(res)
+            // console.log(res.data)
+            this.setState({players: res.data})
         })
         .catch(err => {
             console.error(err); 
         })
     }
 
+    render() {
+        console.log(this.state.players) 
+        if(!this.state.players) {
+            return <h2>Please wait loading...</h2>
+        } else {
+            return(
+                <div>
+                    {this.state.players.map(player => 
+                        <h2 key={player.id}>{player.name} from {player.country}</h2>
+                        )}
+                    
+                </div>
+            )
+        }
+
 }
+}
+
+export default Players
